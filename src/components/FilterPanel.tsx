@@ -61,11 +61,17 @@ export default function FilterPanel({
       {/* Sort By Card - Separate from filters */}
       <div className="w-full md:max-w-xs p-4 border border-gray-200 rounded-lg bg-white shadow-sm mb-4">
         <div
-          className="flex justify-between items-center cursor-pointer mb-2"
+          className="flex justify-between items-center cursor-pointer"
           onClick={() => setSortOpen(!sortOpen)}
           data-testid="filter-header-sort"
         >
-          <h3 className="text-lg font-semibold mb-4 text-gray-800">Sort by</h3>
+          <h3
+            className={`text-lg font-semibold ${
+              sortOpen ? "mb-4" : "mb-0"
+            } text-gray-800`}
+          >
+            Sort by
+          </h3>
           <ArrowIcon isOpen={sortOpen} />
         </div>
 
