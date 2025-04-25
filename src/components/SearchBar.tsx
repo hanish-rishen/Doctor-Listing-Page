@@ -72,7 +72,7 @@ export default function SearchBar({ doctors, onSearch }: SearchBarProps) {
           value={query}
           onChange={handleSearch}
           placeholder="Search Doctors by Name"
-          className="w-full p-3 pl-4 pr-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
+          className="w-full p-3 pl-4 pr-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm bg-white text-gray-900"
           data-testid="autocomplete-input"
         />
         <button
@@ -85,7 +85,7 @@ export default function SearchBar({ doctors, onSearch }: SearchBarProps) {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-5 h-5 text-gray-500"
+            className="w-5 h-5 text-blue-600"
           >
             <path
               strokeLinecap="round"
