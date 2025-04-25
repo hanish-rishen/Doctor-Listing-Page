@@ -159,12 +159,12 @@ export default function DoctorCard({ doctor }: DoctorCardProps) {
       <div className="flex justify-end">
         <div className="flex flex-col items-end">
           <p
-            className="font-semibold text-lg text-gray-900 mb-6"
+            className="font-semibold text-lg text-gray-900 mb-2 md:mb-6"
             data-testid="doctor-fee"
           >
             ₹ {doctor.fees.replace(/[^\d]/g, "")}
           </p>
-          <button className="py-2 px-36 bg-white text-blue-600 border border-blue-600 rounded hover:bg-blue-50 transition text-center">
+          <button className="py-2 px-4 w-full sm:w-auto sm:px-8 md:px-12 lg:px-20 bg-white text-blue-600 border border-blue-600 rounded hover:bg-blue-50 transition text-center">
             Book Appointment
           </button>
         </div>

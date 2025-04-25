@@ -56,6 +56,17 @@ export default function FilterPanel({
     </svg>
   );
 
+  const hasActiveFilters =
+    selectedConsultMode !== null ||
+    selectedSpecialties.length > 0 ||
+    selectedSort !== null;
+
+  const clearAllFilters = () => {
+    onConsultModeChange(null);
+    selectedSpecialties.forEach((spec) => onSpecialtyChange(spec, false));
+    onSortChange("");
+  };
+
   return (
     <>
       {/* Sort By Card - Separate from filters */}
@@ -76,29 +87,31 @@ export default function FilterPanel({
         </div>
 
         {sortOpen && (
-          <div className="pl-1 space-y-2">
-            <label className="flex items-center space-x-2 cursor-pointer">
+          <div className="pl-1 space-y-3">
+            <label className="flex items-start space-x-2 cursor-pointer">
               <input
                 type="radio"
                 name="sort"
                 checked={selectedSort === "fees"}
                 onChange={() => onSortChange("fees")}
-                className="text-blue-600"
+                className="text-blue-600 mt-1"
                 data-testid="sort-fees"
               />
-              <span className="text-gray-700">Price: Low-High</span>
+              <span className="text-gray-700 text-sm sm:text-base">
+                Price: Low-High
+              </span>
             </label>
 
-            <label className="flex items-center space-x-2 cursor-pointer">
+            <label className="flex items-start space-x-2 cursor-pointer">
               <input
                 type="radio"
                 name="sort"
                 checked={selectedSort === "experience"}
                 onChange={() => onSortChange("experience")}
-                className="text-blue-600"
+                className="text-blue-600 mt-1"
                 data-testid="sort-experience"
               />
-              <span className="text-gray-700">
+              <span className="text-gray-700 text-sm sm:text-base break-normal">
                 Experience: Most Experience first
               </span>
             </label>
@@ -108,7 +121,17 @@ export default function FilterPanel({
 
       {/* Filters Card - Without sorting */}
       <div className="w-full md:max-w-xs p-4 border border-gray-200 rounded-lg bg-white shadow-sm">
-        <h2 className="text-lg font-semibold mb-4 text-gray-800">Filters</h2>
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-lg font-semibold text-gray-800">Filters</h2>
+          {hasActiveFilters && (
+            <button
+              onClick={clearAllFilters}
+              className="text-blue-600 text-sm hover:text-blue-800 font-medium cursor-pointer"
+            >
+              Clear all
+            </button>
+          )}
+        </div>
 
         {/* Specialties - Now first */}
         <div className="mb-6">
@@ -213,38 +236,42 @@ export default function FilterPanel({
           </div>
 
           {consultModeOpen && (
-            <div className="pl-1 space-y-2">
-              <label className="flex items-center space-x-2 cursor-pointer">
+            <div className="pl-1 space-y-3">
+              <label className="flex items-start space-x-2 cursor-pointer">
                 <input
                   type="radio"
                   name="consultMode"
                   checked={selectedConsultMode === "Video Consult"}
                   onChange={() => onConsultModeChange("Video Consult")}
-                  className="text-blue-600"
+                  className="text-blue-600 mt-1"
                 />
-                <span className="text-gray-700">Video Consultation</span>
+                <span className="text-gray-700 text-sm sm:text-base">
+                  Video Consultation
+                </span>
               </label>
 
-              <label className="flex items-center space-x-2 cursor-pointer">
+              <label className="flex items-start space-x-2 cursor-pointer">
                 <input
                   type="radio"
                   name="consultMode"
                   checked={selectedConsultMode === "In Clinic"}
                   onChange={() => onConsultModeChange("In Clinic")}
-                  className="text-blue-600"
+                  className="text-blue-600 mt-1"
                 />
-                <span className="text-gray-700">In-Clinic Consultation</span>
+                <span className="text-gray-700 text-sm sm:text-base">
+                  In-Clinic Consultation
+                </span>
               </label>
 
-              <label className="flex items-center space-x-2 cursor-pointer mt-1">
+              <label className="flex items-start space-x-2 cursor-pointer mt-1">
                 <input
                   type="radio"
                   name="consultMode"
                   checked={selectedConsultMode === null}
                   onChange={() => onConsultModeChange(null)}
-                  className="text-blue-600"
+                  className="text-blue-600 mt-1"
                 />
-                <span className="text-gray-700">All</span>
+                <span className="text-gray-700 text-sm sm:text-base">All</span>
               </label>
             </div>
           )}
